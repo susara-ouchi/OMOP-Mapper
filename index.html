@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<title>Concept Mapper</title>
+<title>OMOP Concept Mapper</title>
 <style>
   :root {
     --bg: #f7f6f3;
@@ -347,7 +347,7 @@
     <div class="login-mark">
       <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
     </div>
-    <h1>Concept Mapper</h1>
+    <h1>OMOP Concept Mapper</h1>
     <p>Enter your username to load or continue your mapping session.</p>
     <label for="username-input">Username</label>
     <input type="text" id="username-input" placeholder="e.g. jane_smith" autocomplete="off" autocapitalize="off" spellcheck="false" />
@@ -368,7 +368,7 @@
     </a>
     <div class="nav-links">
       <a class="nav-link" href="guide.html">Guide</a>
-      <a class="nav-link active" href="index-old.html">Mapper</a>
+      <a class="nav-link active" href="index.html">Mapper</a>
     </div>
     <span class="nav-user" id="header-user-chip" onclick="switchUser()">— switch</span>
   </nav>
@@ -401,7 +401,7 @@
     </div>
     <div class="form-group">
       <label>Domain ID</label>
-      <input type="text" id="f-domain" placeholder="e.g. Condition" />
+      <input type="text" id="f-domain" placeholder="e.g. Observation, Condition, Measurement" />
     </div>
     <div class="form-group">
       <label>Name</label>
@@ -413,7 +413,7 @@
     </div>
     <div class="form-group">
       <label>Vocabulary (VOCAB)</label>
-      <input type="text" id="f-vocab" placeholder="e.g. SNOMED" />
+      <input type="text" id="f-vocab" placeholder="e.g. SNOMED, LOINC, RxNorm" />
     </div>
     <button class="save-btn" id="save-btn" onclick="saveMapping()">Save mapping</button>
     <div class="save-feedback" id="save-feedback"></div>
