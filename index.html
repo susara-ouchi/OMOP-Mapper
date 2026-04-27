@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Concept Mapper</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --border: #e2e0d8;
+    --border-strong: #c8c5b8;
+    --text: #1a1915;
+    --text-muted: #6b6860;
+    --text-hint: #a09e98;
+    --accent: #2d5be3;
+    --accent-light: #eef1fc;
+    --accent-muted: #6b8bf5;
+    --success: #1a7f5a;
+    --success-light: #edf7f2;
+    --warn: #b45309;
+    --warn-light: #fef7ee;
+    --danger: #c0392b;
+    --danger-light: #fef2f1;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font: 'Georgia', serif;
+    --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-ui);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-logo {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .header-logo svg { width: 16px; height: 16px; fill: white; }
+  .header-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; flex: 1; }
+  .header-user {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  /* ── Login screen ── */
+  #login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 32px 20px;
+  }
+  .login-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 380px;
+  }
+  .login-mark {
+    width: 48px; height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .login-mark svg { width: 26px; height: 26px; fill: white; }
+  .login-card h1 { font-size: 20px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .login-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.5; }
+  label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  input[type="text"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: var(--font-ui);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type="text"]:focus { border-color: var(--accent); background: white; }
+  .btn {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-ghost:hover { background: var(--accent-light); }
+
+  /* ── App screen ── */
+  #app-screen { display: none; }
+  .progress-bar-wrap {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  /* ── List view ── */
+  #list-view { padding: 16px; }
+  .list-header {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-hint);
+    margin-bottom: 10px;
+    padding: 0 4px;
+  }
+  .field-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .field-item:active { transform: scale(0.99); }
+  .field-item:hover { border-color: var(--border-strong); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .field-item.done { border-left: 3px solid var(--success); }
+  .field-item.done .item-status { color: var(--success); }
+  .item-num {
+    font-size: 12px;
+    color: var(--text-hint);
+    font-weight: 600;
+    min-width: 22px;
+    text-align: center;
+  }
+  .item-body { flex: 1; min-width: 0; }
+  .item-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-details { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-status { font-size: 18px; flex-shrink: 0; }
+
+  /* ── Edit view ── */
+  #edit-view { display: none; padding: 16px; }
+  .edit-nav {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+  }
+  .back-btn {
+    background: none; border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm); padding: 7px 12px;
+    font-size: 13px; cursor: pointer; color: var(--text-muted);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .back-btn:hover { background: var(--bg); }
+  .edit-counter { font-size: 12px; color: var(--text-hint); margin-left: auto; }
+  .edit-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .edit-card-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-hint); margin-bottom: 4px; }
+  .edit-card-field { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .edit-card-details { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 5px; }
+  .form-group input[type="text"] {
+    background: white;
+  }
+  .save-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 13px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin-top: 4px;
+  }
+  .save-btn:hover { opacity: 0.9; }
+  .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .save-feedback {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 10px;
+    min-height: 18px;
+  }
+  .save-feedback.ok { color: var(--success); }
+  .save-feedback.err { color: var(--danger); }
+
+  .nav-btns { display: flex; gap: 8px; margin-top: 12px; }
+  .nav-btns button {
+    flex: 1; padding: 11px; border: 1px solid var(--border-strong);
+    background: var(--surface); border-radius: var(--radius-sm);
+    font-size: 14px; cursor: pointer; color: var(--text-muted);
+    transition: background 0.15s;
+  }
+  .nav-btns button:hover { background: var(--bg); }
+  .nav-btns button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--text); color: white;
+    padding: 10px 20px; border-radius: 20px;
+    font-size: 13px; font-weight: 500;
+    opacity: 0; transition: opacity 0.25s;
+    z-index: 999; pointer-events: none; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; }
+
+  /* ── Loading ── */
+  .spinner {
+    width: 32px; height: 32px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 48px auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .empty-state {
+    text-align: center; padding: 48px 20px; color: var(--text-muted);
+  }
+  .empty-state h3 { font-size: 16px; margin-bottom: 6px; color: var(--text); }
+  .empty-state p { font-size: 13px; line-height: 1.5; }
+
+  /* Config banner */
+  .config-banner {
+    background: var(--warn-light);
+    border: 1px solid #fde8c0;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--warn);
+    line-height: 1.5;
+  }
+  .config-banner code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: monospace;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-mark">
+      <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+    </div>
+    <h1>Concept Mapper</h1>
+    <p>Enter your username to load or continue your mapping session.</p>
+    <label for="username-input">Username</label>
+    <input type="text" id="username-input" placeholder="e.g. jane_smith" autocomplete="off" autocapitalize="off" spellcheck="false" />
+    <button class="btn" id="login-btn" onclick="doLogin()">Continue</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     APP SCREEN
+══════════════════════════════════════════ -->
+<div id="app-screen">
+  <div class="header">
+    <div class="header-logo">
+      <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+    </div>
+    <span class="header-title">Concept Mapper</span>
+    <span class="header-user" id="header-user-chip" onclick="switchUser()">— switch</span>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-meta">
+      <span id="progress-text">Loading…</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <!-- List view -->
+  <div id="list-view">
+    <div id="list-container">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <!-- Edit view -->
+  <div id="edit-view">
+    <div class="edit-nav">
+      <button class="back-btn" onclick="showList()">← Back</button>
+      <span class="edit-counter" id="edit-counter"></span>
+    </div>
+    <div class="edit-card">
+      <div class="edit-card-label">Source field</div>
+      <div class="edit-card-field" id="ef-name"></div>
+      <div class="edit-card-details" id="ef-details"></div>
+    </div>
+    <div class="form-group">
+      <label>Domain ID</label>
+      <input type="text" id="f-domain" placeholder="e.g. Condition" />
+    </div>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" id="f-name" placeholder="Concept name" />
+    </div>
+    <div class="form-group">
+      <label>Concept ID</label>
+      <input type="text" id="f-concept" placeholder="e.g. 4329847" />
+    </div>
+    <div class="form-group">
+      <label>Vocabulary (VOCAB)</label>
+      <input type="text" id="f-vocab" placeholder="e.g. SNOMED" />
+    </div>
+    <button class="save-btn" id="save-btn" onclick="saveMapping()">Save mapping</button>
+    <div class="save-feedback" id="save-feedback"></div>
+    <div class="nav-btns">
+      <button id="prev-btn" onclick="navigate(-1)">← Previous</button>
+      <button id="next-btn" onclick="navigate(1)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+// ⚠️  CONFIG — replace with your values
+// ══════════════════════════════════════════
+const SUPABASE_URL = 'https://csgwatzfliylkpslhqzb.supabase.co/rest/v1/';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNzZ3dhdHpmbGl5bGtwc2xocXpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNzM0NDIsImV4cCI6MjA5Mjg0OTQ0Mn0.1Gd7jYys7pVZJpGC2yAPuSDE7QnckwQBm_EW2PzkmrQ';
+// ══════════════════════════════════════════
+
+const isConfigured = SUPABASE_URL !== 'https://YOUR_PROJECT_ID.supabase.co';
+
+let username = '';
+let fields = [];
+let myMappings = {};
+let currentIdx = 0;
+
+async function sbFetch(path, opts = {}) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': opts.prefer || 'return=representation',
+      ...opts.headers
+    },
+    method: opts.method || 'GET',
+    body: opts.body ? JSON.stringify(opts.body) : undefined
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(err);
+  }
+  return res.status === 204 ? null : res.json();
+}
+
+// ─── Login ────────────────────────────────
+document.getElementById('username-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+
+async function doLogin() {
+  const val = document.getElementById('username-input').value.trim();
+  if (!val) { showToast('Please enter a username'); return; }
+  username = val;
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'block';
+  document.getElementById('header-user-chip').textContent = username + ' · switch';
+  await loadData();
+}
+
+function switchUser() {
+  username = '';
+  fields = []; myMappings = {};
+  document.getElementById('username-input').value = '';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app-screen').style.display = 'none';
+  showList();
+}
+
+// ─── Load data ────────────────────────────
+async function loadData() {
+  document.getElementById('list-container').innerHTML = '<div class="spinner"></div>';
+
+  if (!isConfigured) {
+    // Demo mode — show sample data
+    fields = [
+      { id: 1, source_field: 'AdmissionID', details: 'Admission number of patient' },
+      { id: 2, source_field: 'BirthWeight', details: 'Birth weight of child' },
+      { id: 3, source_field: 'DiagnosisCode', details: 'Primary ICD diagnosis code' },
+      { id: 4, source_field: 'DischargeDate', details: 'Date patient was discharged' },
+    ];
+    myMappings = {};
+    renderList();
+    updateProgress();
+    return;
+  }
+
+  try {
+    const [sf, maps] = await Promise.all([
+      sbFetch('source_fields?select=id,source_field,details&order=id'),
+      sbFetch('mappings?select=*&username=eq.' + encodeURIComponent(username))
+    ]);
+    fields = sf;
+    myMappings = {};
+    maps.forEach(m => { myMappings[m.source_field_id] = m; });
+    renderList();
+    updateProgress();
+  } catch (e) {
+    document.getElementById('list-container').innerHTML =
+      `<div class="empty-state"><h3>Could not load data</h3><p>${e.message}</p></div>`;
+  }
+}
+
+// ─── List view ────────────────────────────
+function renderList() {
+  const container = document.getElementById('list-container');
+  if (!fields.length) {
+    container.innerHTML = `<div class="empty-state"><h3>No source fields yet</h3><p>Ask your admin to upload the source fields CSV in Supabase.</p></div>`;
+    return;
+  }
+
+  let html = '';
+  if (!isConfigured) {
+    html += `<div class="config-banner">⚠ Demo mode — update <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> in the HTML file to connect your database.</div>`;
+  }
+  html += `<div class="list-header">${fields.length} source fields</div>`;
+  fields.forEach((f, i) => {
+    const mapped = !!myMappings[f.id];
+    html += `
+      <div class="field-item ${mapped ? 'done' : ''}" onclick="openEdit(${i})">
+        <span class="item-num">${f.id}</span>
+        <div class="item-body">
+          <div class="item-name">${esc(f.source_field)}</div>
+          ${f.details ? `<div class="item-details">${esc(f.details)}</div>` : ''}
+        </div>
+        <span class="item-status">${mapped ? '✓' : '›'}</span>
+      </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function updateProgress() {
+  const done = Object.keys(myMappings).length;
+  const total = fields.length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progress-text').textContent = `${done} of ${total} mapped`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// ─── Edit view ────────────────────────────
+function openEdit(idx) {
+  currentIdx = idx;
+  showEdit();
+}
+
+function showEdit() {
+  document.getElementById('list-view').style.display = 'none';
+  document.getElementById('edit-view').style.display = 'block';
+  populateEdit();
+}
+
+function showList() {
+  document.getElementById('edit-view').style.display = 'none';
+  document.getElementById('list-view').style.display = 'block';
+  renderList();
+  updateProgress();
+}
+
+function populateEdit() {
+  const f = fields[currentIdx];
+  document.getElementById('ef-name').textContent = f.source_field;
+  document.getElementById('ef-details').textContent = f.details || '';
+  document.getElementById('edit-counter').textContent = `${currentIdx + 1} / ${fields.length}`;
+  document.getElementById('prev-btn').disabled = currentIdx === 0;
+  document.getElementById('next-btn').disabled = currentIdx === fields.length - 1;
+  document.getElementById('save-feedback').textContent = '';
+
+  const existing = myMappings[f.id] || {};
+  document.getElementById('f-domain').value = existing.domain_id || '';
+  document.getElementById('f-name').value = existing.name || '';
+  document.getElementById('f-concept').value = existing.concept_id || '';
+  document.getElementById('f-vocab').value = existing.vocab || '';
+}
+
+function navigate(dir) {
+  currentIdx += dir;
+  if (currentIdx < 0) currentIdx = 0;
+  if (currentIdx >= fields.length) currentIdx = fields.length - 1;
+  populateEdit();
+}
+
+// ─── Save ─────────────────────────────────
+async function saveMapping() {
+  const btn = document.getElementById('save-btn');
+  const fb = document.getElementById('save-feedback');
+  const f = fields[currentIdx];
+  const payload = {
+    username,
+    source_field_id: f.id,
+    domain_id: document.getElementById('f-domain').value.trim(),
+    name: document.getElementById('f-name').value.trim(),
+    concept_id: document.getElementById('f-concept').value.trim(),
+    vocab: document.getElementById('f-vocab').value.trim(),
+    updated_at: new Date().toISOString()
+  };
+
+  btn.disabled = true;
+  fb.textContent = '';
+  fb.className = 'save-feedback';
+
+  if (!isConfigured) {
+    // Demo: save to in-memory object
+    myMappings[f.id] = payload;
+    setTimeout(() => {
+      btn.disabled = false;
+      fb.textContent = '✓ Saved (demo mode — not persisted)';
+      fb.className = 'save-feedback ok';
+      updateProgress();
+    }, 400);
+    return;
+  }
+
+  try {
+    await sbFetch('mappings', {
+      method: 'POST',
+      body: payload,
+      prefer: 'resolution=merge-duplicates,return=representation',
+      headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' }
+    });
+    myMappings[f.id] = payload;
+    fb.textContent = '✓ Saved successfully';
+    fb.className = 'save-feedback ok';
+    updateProgress();
+    // Auto-advance after short delay if not last
+    if (currentIdx < fields.length - 1) {
+      setTimeout(() => navigate(1), 800);
+    }
+  } catch (e) {
+    fb.textContent = '✗ Save failed: ' + e.message;
+    fb.className = 'save-feedback err';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// ─── Helpers ──────────────────────────────
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
