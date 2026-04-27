@@ -38,6 +38,10 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  select option[value=""] { color: var(--text-hint); }
+
+  select.empty { color: var(--text-hint); }
+
   /* ── Nav ── */
   .nav {
     background: var(--surface);
@@ -124,7 +128,7 @@
   .login-card h1 { font-size: 20px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.02em; }
   .login-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.5; }
   label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-  input[type="text"] {
+  input[type="text"], select {
     width: 100%;
     padding: 11px 14px;
     border: 1px solid var(--border-strong);
@@ -135,8 +139,10 @@
     color: var(--text);
     outline: none;
     transition: border-color 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
   }
-  input[type="text"]:focus { border-color: var(--accent); background: white; }
+  input[type="text"]:focus, select:focus { border-color: var(--accent); background: white; }
   .btn {
     display: block;
     width: 100%;
@@ -252,7 +258,8 @@
   .edit-card-details { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
   .form-group { margin-bottom: 14px; }
   .form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 5px; }
-  .form-group input[type="text"] {
+  .form-group input[type="text"],
+  .form-group select {
     background: white;
   }
   .save-btn {
@@ -342,6 +349,28 @@
 <!-- ══════════════════════════════════════════
      LOGIN SCREEN
 ══════════════════════════════════════════ -->
+<!-- <nav class="nav">
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-mark">
+      <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+    </div>
+    OMOP Mapper
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="guide.html">Guide</a>
+    <a class="nav-link active" href="index.html">Mapper</a>
+  </div>
+</nav> -->
+
+<!-- <div class="nav">
+  <div class="nav-brand">
+    <div class="nav-brand-mark">
+      <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+    </div>
+    <span>OMOP Concept Mapper</span>
+  </div>
+</div> -->
+
 <div id="login-screen">
   <div class="login-card">
     <div class="login-mark">
@@ -364,7 +393,7 @@
       <div class="nav-brand-mark">
         <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
       </div>
-      OMOP Mapper
+      OMOP Concept Mapper
     </a>
     <div class="nav-links">
       <a class="nav-link" href="guide.html">Guide</a>
@@ -399,10 +428,19 @@
       <div class="edit-card-field" id="ef-name"></div>
       <div class="edit-card-details" id="ef-details"></div>
     </div>
-    <div class="form-group">
-      <label>Domain ID</label>
-      <input type="text" id="f-domain" placeholder="e.g. Observation, Condition, Measurement" />
-    </div>
+  <div class="form-group">
+    <label>Domain ID</label>
+    <select class="empty" id="f-domain-select" onchange="handleSelect('f-domain-select','f-domain')">
+      <option value="">— select —</option>
+      <option>Condition</option>
+      <option>Drug</option>
+      <option>Measurement</option>
+      <option>Observation</option>
+      <option>Procedure</option>
+      <option value="Other">Other…</option>
+    </select>
+    <input type="text" id="f-domain" placeholder="Specify domain" style="display:none; margin-top:8px;" />
+  </div>
     <div class="form-group">
       <label>Name</label>
       <input type="text" id="f-name" placeholder="Concept name" />
@@ -411,10 +449,19 @@
       <label>Concept ID</label>
       <input type="text" id="f-concept" placeholder="e.g. 4329847" />
     </div>
-    <div class="form-group">
-      <label>Vocabulary (VOCAB)</label>
-      <input type="text" id="f-vocab" placeholder="e.g. SNOMED, LOINC, RxNorm" />
-    </div>
+  <div class="form-group">
+    <label>Vocabulary (VOCAB)</label>
+    <select class="empty" id="f-vocab-select" onchange="handleSelect('f-vocab-select','f-vocab')">
+      <option value="">— select —</option>
+      <option>SNOMED</option>
+      <option>LOINC</option>
+      <option>RxNorm</option>
+      <option>ICD10CM</option>
+      <option>ICD10PCS</option>
+      <option value="Other">Other…</option>
+    </select>
+    <input type="text" id="f-vocab" placeholder="Specify vocabulary" style="display:none; margin-top:8px;" />
+  </div>
     <button class="save-btn" id="save-btn" onclick="saveMapping()">Save mapping</button>
     <div class="save-feedback" id="save-feedback"></div>
     <div class="nav-btns">
@@ -482,6 +529,39 @@ function switchUser() {
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('app-screen').style.display = 'none';
   showList();
+}
+
+function handleSelect(selectId, inputId) {
+  const sel = document.getElementById(selectId);
+  const inp = document.getElementById(inputId);
+  if (sel.value === 'Other') {
+    inp.style.display = 'block';
+    inp.focus();
+  } else {
+    inp.style.display = 'none';
+    inp.value = '';
+  }
+  sel.classList.toggle('empty', sel.value === '');
+}
+
+function restoreDropdown(selectId, inputId, savedValue) {
+  const sel = document.getElementById(selectId);
+  const inp = document.getElementById(inputId);
+  const opt = [...sel.options].find(o => o.value === savedValue || o.text === savedValue);
+  if (!savedValue) {
+    sel.value = ''; inp.style.display = 'none'; inp.value = '';
+  } else if (opt) {
+    sel.value = opt.value; inp.style.display = 'none'; inp.value = '';
+  } else {
+    sel.value = 'Other'; inp.style.display = 'block'; inp.value = savedValue;
+  }
+  sel.classList.toggle('empty', sel.value === '');
+}
+
+function getDomainOrVocab(selectId, inputId) {
+  const sel = document.getElementById(selectId);
+  if (sel.value === 'Other') return document.getElementById(inputId).value.trim();
+  return sel.value;
 }
 
 // ─── Load data ────────────────────────────
@@ -584,10 +664,10 @@ function populateEdit() {
   document.getElementById('save-feedback').textContent = '';
 
   const existing = myMappings[f.id] || {};
-  document.getElementById('f-domain').value = existing.domain_id || '';
+  restoreDropdown('f-domain-select', 'f-domain', existing.domain_id || '');
   document.getElementById('f-name').value = existing.name || '';
   document.getElementById('f-concept').value = existing.concept_id || '';
-  document.getElementById('f-vocab').value = existing.vocab || '';
+  restoreDropdown('f-vocab-select', 'f-vocab', existing.vocab || '');
 }
 
 function navigate(dir) {
@@ -605,10 +685,10 @@ async function saveMapping() {
   const payload = {
     username,
     source_field_id: f.id,
-    domain_id: document.getElementById('f-domain').value.trim(),
+    domain_id: getDomainOrVocab('f-domain-select', 'f-domain'),
     name: document.getElementById('f-name').value.trim(),
     concept_id: document.getElementById('f-concept').value.trim(),
-    vocab: document.getElementById('f-vocab').value.trim(),
+    vocab: getDomainOrVocab('f-vocab-select', 'f-vocab'),
     updated_at: new Date().toISOString()
   };
 
