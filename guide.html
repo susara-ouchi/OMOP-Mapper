@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Concept Mapper — User Guide</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --border: #e2e0d8;
+    --text: #1a1915;
+    --text-muted: #6b6860;
+    --text-hint: #a09e98;
+    --accent: #2d5be3;
+    --accent-light: #eef1fc;
+    --success: #1a7f5a;
+    --success-light: #edf7f2;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ── */
+  .nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    height: 52px;
+  }
+  .nav-brand {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+  }
+  .nav-brand-mark {
+    width: 26px; height: 26px;
+    background: var(--accent);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-brand-mark svg { width: 14px; height: 14px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-links { display: flex; align-items: center; gap: 2px; }
+  .nav-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-link:hover { background: var(--bg); color: var(--text); }
+  .nav-link.active { background: var(--accent-light); color: var(--accent); }
+
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+
+  /* Header */
+  .hero {
+    background: var(--accent);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    margin-bottom: 28px;
+    color: white;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+
+  /* Save note */
+  .save-note {
+    background: var(--success-light);
+    border: 1px solid #b8e4d0;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .save-note-icon {
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .save-note-text { font-size: 14px; color: #0f5c3e; line-height: 1.5; }
+  .save-note-text strong { font-weight: 600; }
+
+  /* Section */
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-hint);
+    margin-bottom: 10px;
+    padding-left: 2px;
+  }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 10px; }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 26px; height: 26px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-body h3 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .step-body p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* Fields table */
+  .fields-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .field-row {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .field-row:last-child { border-bottom: none; }
+  .field-tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+    letter-spacing: 0.02em;
+  }
+  .field-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .field-desc strong { color: var(--text); font-weight: 600; font-size: 13px; }
+
+  /* Tips */
+  .tips { display: flex; flex-direction: column; gap: 8px; }
+  .tip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 13px 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: flex;
+    gap: 10px;
+  }
+  .tip-icon { flex-shrink: 0; font-size: 15px; }
+  .tip strong { color: var(--text); font-weight: 600; }
+
+  /* Username note */
+  .username-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  .username-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .username-box p + p { margin-top: 8px; }
+  .username-box strong { color: var(--text); font-weight: 600; }
+  .username-example {
+    display: inline-block;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1px 8px;
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin: 0 2px;
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="index-old.html">
+    <div class="nav-brand-mark">
+      <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+    </div>
+    OMOP Mapper
+  </a>
+  <div class="nav-links">
+    <a class="nav-link active" href="guide.html">Guide</a>
+    <a class="nav-link" href="index-old.html">Mapper</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-label">Concept Mapper</div>
+    <h1>How to fill in your mappings</h1>
+    <p>A quick guide to completing your assigned source field mappings on your phone or computer.</p>
+  </div>
+
+  <div class="save-note">
+    <div class="save-note-icon">✓</div>
+    <div class="save-note-text">
+      <strong>Your progress is saved automatically.</strong> Every time you tap Save, your answer is stored. You can close the app, come back later, and pick up exactly where you left off — just use the same username.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Getting started</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Open the app</h3>
+          <p>Open the Concept Mapper link on your phone or computer. You don't need to install anything.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Enter your username</h3>
+          <p>Type in the username you've been given and tap Continue. This is how the app knows which mappings belong to you.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Pick a source field</h3>
+          <p>You'll see a list of all source fields. Tap any one to start filling it in. Fields you've already completed show a ✓.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Fill in the four fields and save</h3>
+          <p>Enter the Domain ID, Name, Concept ID, and Vocabulary for that source field, then tap <strong>Save mapping</strong>. The app will move to the next field automatically.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">What each field means</div>
+    <div class="fields-card">
+      <div class="field-row">
+        <span class="field-tag">Domain ID</span>
+        <div class="field-desc"><strong>The OMOP domain this concept belongs to.</strong> For example: Condition, Drug, Measurement, Observation, Procedure.</div>
+      </div>
+      <div class="field-row">
+        <span class="field-tag">Name</span>
+        <div class="field-desc"><strong>The standard concept name</strong> as it appears in the OMOP vocabulary. This is the human-readable label for the concept.</div>
+      </div>
+      <div class="field-row">
+        <span class="field-tag">Concept ID</span>
+        <div class="field-desc"><strong>The unique numeric ID</strong> for this concept in the OMOP vocabulary. For example: <em>4329847</em>.</div>
+      </div>
+      <div class="field-row">
+        <span class="field-tag">Vocab</span>
+        <div class="field-desc"><strong>The vocabulary the concept comes from.</strong> For example: SNOMED, LOINC, RxNorm, ICD10CM.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Your username</div>
+    <div class="username-box">
+      <p>Use the username you've been assigned — for example <span class="username-example">jane_smith</span> or <span class="username-example">reviewer_2</span>.</p>
+      <p><strong>Always use the same username</strong> each time you open the app. If you use a different name, your previous work won't appear and you'll create a separate set of mappings.</p>
+      <p>If you're unsure what your username should be, check with the person who sent you this link.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Tips</div>
+    <div class="tips">
+      <div class="tip">
+        <span class="tip-icon">↩</span>
+        <span>You can <strong>come back anytime</strong>. Close the app whenever you need to — your saved mappings are stored and will be there when you return.</span>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">✎</span>
+        <span>You can <strong>edit a mapping you've already saved</strong> — just tap the field in the list, make your changes, and tap Save again.</span>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">↕</span>
+        <span>Use the <strong>Previous</strong> and <strong>Next</strong> buttons to move between fields without going back to the list.</span>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">◎</span>
+        <span>The <strong>progress bar</strong> at the top shows how many fields you've completed out of the total.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

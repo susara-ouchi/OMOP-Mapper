@@ -38,54 +38,28 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── Nav ── */
-  .nav {
+  /* ── Header ── */
+  .header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 0 20px;
+    padding: 14px 20px;
     position: sticky;
     top: 0;
     z-index: 100;
     display: flex;
     align-items: center;
-    gap: 0;
-    height: 52px;
+    gap: 12px;
   }
-  .nav-brand {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    text-decoration: none;
-  }
-  .nav-brand-mark {
-    width: 26px; height: 26px;
+  .header-logo {
+    width: 28px; height: 28px;
     background: var(--accent);
     border-radius: 7px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .nav-brand-mark svg { width: 14px; height: 14px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .nav-links { display: flex; align-items: center; gap: 2px; }
-  .nav-link {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: var(--radius-sm);
-    transition: background 0.15s, color 0.15s;
-  }
-  .nav-link:hover { background: var(--bg); color: var(--text); }
-  .nav-link.active {
-    background: var(--accent-light);
-    color: var(--accent);
-  }
-  .nav-user {
+  .header-logo svg { width: 16px; height: 16px; fill: white; }
+  .header-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; flex: 1; }
+  .header-user {
     font-size: 12px;
     color: var(--text-muted);
     background: var(--bg);
@@ -93,7 +67,6 @@
     padding: 4px 10px;
     border-radius: 20px;
     cursor: pointer;
-    margin-left: 10px;
   }
 
   /* ── Login screen ── */
@@ -359,19 +332,13 @@
      APP SCREEN
 ══════════════════════════════════════════ -->
 <div id="app-screen">
-  <nav class="nav">
-    <a class="nav-brand" href="#">
-      <div class="nav-brand-mark">
-        <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
-      </div>
-      OMOP Mapper
-    </a>
-    <div class="nav-links">
-      <a class="nav-link" href="guide.html">Guide</a>
-      <a class="nav-link active" href="index-old.html">Mapper</a>
+  <div class="header">
+    <div class="header-logo">
+      <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
     </div>
-    <span class="nav-user" id="header-user-chip" onclick="switchUser()">— switch</span>
-  </nav>
+    <span class="header-title">Concept Mapper</span>
+    <span class="header-user" id="header-user-chip" onclick="switchUser()">— switch</span>
+  </div>
 
   <div class="progress-bar-wrap">
     <div class="progress-meta">

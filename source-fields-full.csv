@@ -1,0 +1,259 @@
+﻿source_field,details
+AdmissionStatusRefId,Admission status
+AgreedBirthWeightGrams,"The first weight, in grams, of the live born or stillborn baby, obtained after birth r the weight of the neonate or infant on the date admitted if this is different from the date of birth"
+AgreedBirthweightGroup,Agreed birth weight group
+AgreedGestation,Agreed gestation in weeks
+Agt_ARM,AGT ARM
+Agt_Other,AGT other
+Agt_Oxytocin,AGT Oxyocin
+Agt_Prostagland,AGT Prostagland
+AnaesthesiaOpDeliveryIndicator,"Whether anaesthesia is administered to the mother for, or associated with, the operative delivery of the baby (forceps, vacuum/ventouse or caesarean section)"
+AnaesthesiaOpDeliveryRefId,Anaesthesia operation delivery
+AnaesthesiaOpDeliveryType,The type of anaesthesia administered to a woman during a birth event
+AnalgesiaLabourIndicator,Whether analgesia is administered to the woman to relieve pain during labour
+AnalgesiaLabourTypeRefId,The type of analgesia administered to the woman during a birth event
+Apgar_1Min,Minimum numerical score used to indicate the baby's condition at one minute after birth
+Apgar_1Min_group,Minimum grouped score used to indicate the baby's condition at one minute after birth
+Apgar_5Min,Minimum numerical score used to indicate the baby's condition at five minutes after birth
+Apgar_5Min_group,Minimum grouped score used to indicate the baby's condition at five minutes after birth
+ApgarScoreAt1Minute,Numerical score used to indicate the baby's condition at one minute after birth
+ApgarScoreAt5Minutes,Numerical score used to indicate the baby's condition at five minutes after birth
+ArrivedInAustraliaYear,#N/A
+ArtificialReproductvTechIndRefId,Whether artificial reproductive technology (ART) was used to assist the current pregnancy
+BabyBirthDate,The date of birth of the baby
+BabyBirthDatetime,#N/A
+BabyGenderId,#N/A
+BabyIndigenousId,Indigenous status of baby
+BabyLOS,Baby LOS
+BabyPersonAddressId,#N/A
+BabySCNandNICUAdmissionRefId,Whether the neonate is admitted into a special care nursery (SCN) or neonatal intensive care unit (NICU)
+BabySeparationDate,Baby seperation date
+BabySepStatusRefId,Baby seperation status
+BabyTransferToCampusId,Campus Id for baby transfer
+BabyTransferToHospLevel,Hospital transfer to baby transfer
+BirthMethodRefId,The method of complete expulsion or extraction from the woman of a product of conception in a birth event
+BirthOrder,Birth order
+BirthPresentationRefId,Presenting part of the fetus (at the cervix) at birth
+BirthSettingActualOther,BirthSettingActualOther
+BirthSettingActualRefId,The actual place where the birth occurred
+BirthSettingChangedIntentRefId,Whether the change of intent between where the mother intended to give birth and the actual birth setting took place before or during labour
+BirthSettingChangeIntentRsnRefId,Reason for change of intent between where the mother intended to give birth and where the actual birth took place
+BirthSettingIntentRefId,The intended place of birth
+BirthStatusGroup,BirthStatusGroup
+BirthStatusRefId,Status of the baby at birth
+BirthStatusReportFinalRefId,Birth status report final
+BreastfeedAttemptRefId,Whether the mother attempted to breastfeed the baby or express breast milk at least once
+BW_Bracket,BW bracket
+CampusId,Campus Id
+CongenitalAnomaliesConcatenated,"Structural or anatomical abnormalities that are present at birth, in either a live born or stillborn baby. They may be detected during the pregnancy, at birth or days after. They may be multiple or isolated."
+DeathDate,Death date
+DeathFromCongAnomoliesRefId,Death from congenital animalies
+DisciplineAntenatalCareProvRefId,The discipline of the clinician who provided most occasions of antenatal care
+DisciplineIntrapartCareProvRefId,"The discipline of the clinician who, at the time of admission for the birth, is expected to be primarily responsible for making decisions regarding intrapartum care"
+DueDate,Due date
+EnglishSpeakingId,English speaking Id
+EpisiotomyRefId,Whether an incision of the perineum and vagina was made
+FetalMonitorRefId,Methods used to monitor the wellbeing of the fetus during labour
+FinancialYear,Financial year
+FormulaInHospitalRefId,"Whether any infant formula was given to this baby in hospital, whether by bottle, cup, gavage or other means"
+GestationalAgeGroupRefId,Gestational age group
+GestationDays,Gestation days
+GestationWksFirstAntenatalVisit,"The number of completed weeks’ gestation at the time of the first antenatal visit (excluding a consultation for confirmation of pregnancy), as measured from the first day of the last normal menstrual period"
+Gravidity,The total number of pregnancies including the current one
+GravidityRefId,The total number of pregnancies including the current one
+HeadCircumferenceCentimetres,The measurement of the circumference of the head of the baby
+HepatitisBVaccineRefId,Whether the baby received an immunisation vaccine for hepatitis B during the birth admission
+HospitalGroupRefId,Hospital group
+HospLevel,Hospital
+InductionAgent,Induction agent
+InductionInd01,Induction indicator 01
+InductionInd02,Induction indicator 02
+InductionInd03,Induction indicator 03
+InductionInd04,Induction indicator 04
+InductionInd05,Induction indicator 05
+InductionInd06,Induction indicator 06
+InfluenzaVaccineStatusRefId,Whether or not the mother has received an influenza vaccine during this pregnancy
+IRSD2011_SA1,IRSD2011_SA1
+IRSD2011_SA2,IRSD2011_SA2
+IRSD2016_SA1,IRSD2016_SA1
+IRSD2016_SA2,IRSD2016_SA2
+LabourBirthEvents01,Labour birth event 01
+LabourBirthEvents02,Labour birth event 02
+LabourBirthEvents03,Labour birth event 03
+LabourBirthEvents04,Labour birth event 04
+LabourBirthEvents05,Labour birth event 05
+LabourBirthEvents06,Labour birth event 06
+LabourBirthEvents07,Labour birth event 07
+LabourBirthEvents08,Labour birth event 08
+LabourBirthEvents09,Labour birth event 09
+LabourBirthEvents10,Labour birth event 10
+LabourBirthEvents11,Labour birth event 11
+LabourDurationMinutes,Duration of labour in minutes
+LabourInductionAgentsConcat,Labour induction agents concatenated
+LabourInductionReasonsConcat,Labour induction reasons concatenated
+LabourOnsetDate,Onset date of labour
+LabourTypeAugAgent,Labour type augmentation agent
+LabourTypeRefId,The manner in which labour starts in a birth event
+LastBirthCaesareanRefId,An indicator of whether a caesarean section was performed for the most recent previouspregnancy that resulted in a birth.
+LastFeedBeforeDischargeRefId,"Whether the last feed prior to discharge was taken exclusively from the breast, with no complementary feeding of any kind"
+LastPregnancyMonth,Month on which the pregnancy preceding the current pregnancy was completed
+LastPregnancyYear,Year on which the pregnancy preceding the current pregnancy
+LGA_Name,LGA name
+LinkedBabyPersonId,Unique person identification of baby
+LinkedMumPersonId,Unique person identification of mum
+LinkedPersonDemographicsId,#N/A
+LinkedPersonNeedId,#N/A
+LinkedVersionId,Version ID
+ManualRemovalPlacentaRefId,Whether the placenta was manually removed
+MaritalStatusId,Marital status of mother
+mat_tp_accom,mat_tp_accom
+MaternalMedConditionsConcat,Pre-existing maternal diseases and conditions that are not directly attributable to pregnancy but may significantly affect care during the current pregnancy and/or pregnancy outcome
+MatMedCond01,Maternal medical condition 01
+MatMedCond02,Maternal medical condition 02
+MatMedCond03,Maternal medical condition 03
+MatMedCond04,Maternal medical condition 04
+MatMedCond05,Maternal medical condition 05
+MatMedCond06,Maternal medical condition 06
+MatMedCond07,Maternal medical condition 07
+MatMedCond08,Maternal medical condition 08
+MatMedCond09,Maternal medical condition 09
+MatMedCond10,Maternal medical condition 10
+MatMedCond11,Maternal medical condition 11
+MatMedCond12,Maternal medical condition 12
+MatMedCond13,Maternal medical condition 13
+MumAdmissionDate,Mum admission date
+MumAge,Mum age
+MumBirthDate,Mum birth date
+MumBloodLossRefId,"An estimate of the amount of blood lost at the time of birth and in the following 24 hours in millilitres (whether the loss is from the vagina, from an abdominal incision, or retained for example, broad ligament haematoma)"
+MumBloodLossTransfusionRefId,"Whether the mother was given a transfusion of whole blood, or any blood product (excluding anti-D), during her postpartum stay"
+MumBodyMassIndex,Mum body mass index
+MumBodyMassIndexRefId,MumBodyMassIndexRefId
+MumCountryOfBirthId,Mum country of birth
+MumHDUandICUAdmissionRefId,Whether the mother is admitted into a high dependency unit (HDU) / intensive care unit (ICU)
+MumHeight,Height of mum in cms
+MumHeightNumber,#N/A
+MumIndigenousId,Mums indigenous Id
+MumLocality,Locality code of Mum
+MumLOS,Mum LOS
+MumPersonAddressId,#N/A
+MumPostcode,Postcode of address of mum
+MumPostnatalLOS,Mum post natal LOS
+MumSeparationDate,Mum seperation date
+MumSepStatusRefId,Status at separation of mother (discharge/transfer/ death)
+MumTransferToCampusId,Campus Id where mum transferred
+MumTransferToHospLevel,Hospital transfer to mum transfer
+MumWeight,Mother’s self-reported weight (body mass) about the time of conception
+MumWeightNumber,#N/A
+NeonatalMorbidity01,Neonatal morbibidity 01
+NeonatalMorbidity02,Neonatal morbibidity 02
+NeonatalMorbidity03,Neonatal morbibidity 03
+NeonatalMorbidity04,Neonatal morbibidity 04
+NeonatalMorbidity05,Neonatal morbibidity 05
+NeonatalMorbidity06,Neonatal morbibidity 06
+NeonatalMorbidity07,Neonatal morbibidity 07
+NeonatalMorbidity08,Neonatal morbibidity 08
+NeonatalMorbidity09,Neonatal morbibidity 09
+NeonatalMorbidity10,Neonatal morbibidity 10
+NeonatalMorbidity11,Neonatal morbibidity 11
+NeonatalMorbidity12,Neonatal morbibidity 12
+NeonatalMorbidity13,Neonatal morbibidity 13
+NeonatalMorbidityConcatenated,Neonatal morbibidity coding concatenated
+NeonateTimeOfDeath,Neonatal time of death
+NoOfAntenatalVisits,Number of Antenatal
+NoOfBirths,Number of births
+NoOfDueDates,Number of due dates
+NoOfPreviousAbortionsInduced,Number of previous abortions induced
+NoOfPreviousAbortionsSpontaneous,Number of previous abortions spontaneous
+NoOfPreviousCSections,Number of previous C sections
+NoOfPreviousEctopicPregnancies,Number of previous ectopic pregnancies
+NoOfPreviousLiveBirths,Number of previous live births
+NoOfPreviousNeonatalDeaths,Number of previous neonatal deaths
+NoOfPreviousStillbirths,Number of previous still births
+NoOfUltrasounds10to14Weeks,Number of ultrasounds - 10 to 14 weeks
+NoOfUltrasounds13to26Weeks,Number of ultrasounds - 13 to 26 weeks
+NoOfUltrasounds15to26Weeks,Number of ultrasounds - 15 to 26 weeks
+NoOfUltrasoundsAfter26Weeks,Number of ultrasounds - after 26 weeks
+NoOfUltrasoundsBefore13Weeks,Number of ultrasounds - before 13 weeks
+ObstComplication01,Obstetric complications 01
+ObstComplication02,Obstetric complications 02
+ObstComplication03,Obstetric complications 03
+ObstComplication04,Obstetric complications 04
+ObstComplication05,Obstetric complications 05
+ObstComplication06,Obstetric complications 06
+ObstComplication07,Obstetric complications 07
+ObstComplication08,Obstetric complications 08
+ObstComplication09,Obstetric complications 09
+ObstComplication10,Obstetric complications 10
+ObstComplication11,Obstetric complications 11
+ObstComplication12,Obstetric complications 12
+ObstComplication13,Obstetric complications 13
+ObstComplication14,Obstetric complications 14
+ObstComplication15,Obstetric complications 15
+ObstComplication16,Obstetric complications 16
+ObstetricComplicationsConcat,#N/A
+OperativeBirthReasonsConcat,#N/A
+OperativeDelivery01,Operative delivery 01
+OperativeDelivery02,Operative delivery 02
+OperativeDelivery03,Operative delivery 03
+OperativeDelivery04,Operative delivery 04
+OperativeDelivery05,Operative delivery 05
+OperativeDelivery06,Operative delivery 06
+OperativeDelivery07,Operative delivery 07
+OperativeDelivery08,Operative delivery 08
+OutcomeLastPregnancyRefId,Outcome of the most recent pregnancy preceding the current pregnancy
+PerinealLacerationDegreeRefId,The state of the perineum following birth
+PerinealLacerationDegreeType,The degree or type of laceration/tear to the perineum and/or genital tract following birth
+PerinealLacerationFlag,Perineal laceration
+PerinealLacerationIndicatorRefId,Perineal laceration indicator
+PlaceBirthRefId,The actual place where the birth occurred
+PluralityRefId,The total number of babies resulting from a single pregnancy
+PostnatalDepressionFlag,Postnatal depression flag
+PostpartumCompConcatenated,Postpartum complication codes concatenated
+PostpartumComplication01,Postpartum complication 01
+PostpartumComplication02,Postpartum complication 02
+PostpartumComplication03,Postpartum complication 03
+PostpartumComplication04,Postpartum complication 04
+PostpartumComplication05,Postpartum complication 05
+PostpartumComplication06,Postpartum complication 06
+PostpartumComplication07,Postpartum complication 07
+PreviousCaesareanFlag,Previous caesarean flag
+PreviousPregnanciesRefId,Previous pregnancies
+PrevPregnanciesOutcomeUnkRefId,Total number of previous pregnancies where the outcome is unknown
+ProcedureACHI01,Procedure ACHI 01
+ProcedureACHI02,Procedure ACHI 02
+ProcedureACHI03,Procedure ACHI 03
+ProcedureACHI04,Procedure ACHI 04
+ProcedureACHI05,Procedure ACHI 05
+ProcedureACHI06,Procedure ACHI 06
+ProcedureACHI07,Procedure ACHI 07
+ProcedureACHI08,Procedure ACHI 08
+ProcedureACHI09,Procedure ACHI 09
+ProceduresConcatenated,Procedure codes concatenated
+ProcedureText,Procedure text
+ProphylacticOxytocicRefId,Prophylactic oxytocic
+ResusMethodDrugsConcatenated,"Drugs administered immediately after birth to establish independent respiration and heartbeat, or to treat depressed respiratory effort and to correct metabolic disturbances"
+ResusMethodMechanicalConcat,#N/A
+SA1_7DIG11,SA1 7 digit 2011
+SA1_7DIG16,SA1 7 digit 2016
+SA1_MAIN11,SA1 main 2011
+SA1_MAIN16,SA1 main 2016
+SA2_5DIG11,SA2 5 digit 2011
+SA2_5DIG16,SA2 5 digit 2016
+SA2_MAIN11,SA2 main 2011
+SA2_MAIN16,SA2 main 2016
+SA2_NAME11,SA2 name 2011
+SA2_NAME16,SA2 name 2016
+seifaquinn06,SEIFA quinn 2006
+seifaquinn11_SA1,SEIFA quinn 2011 SA1
+seifaquinn16_SA1,SEIFA quinn 2016 SA1
+SepStatus_Mat_Old,SepStatus_Mat_Old
+SLA_Name,SLA name
+SmallForGestationalAgeRefId,Small for gestational age
+SmokingAfter20WeeksRefId,Smoking after 20 weeks
+SmokingBefore20WeeksRefId,Smoking before 20 weeks
+StillbirthTimeOfDeath,Still birth time of death
+TER,TER
+UniqueRegID,Unique registration Id
+VaginalBirthAfterCaesarPlanRefId,"Where, at the time of admission to hospital for the birth, the woman planned to have a vaginal birth after one or more previous caesarean sections."
+VicPerinatalDW_PK,Primary key
+YearArrivalAustralia,"The year a person (born outside of Australia) first arrived in Australia, from another country."
